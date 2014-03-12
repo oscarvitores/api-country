@@ -1,17 +1,18 @@
 {
     "name": "oxkhar/api-country",
-    "description": "API REST list code countries",
-    "require": {
-        "slim/slim": "2.4.*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.0.*"
-    },
+    "description": "code countries API REST",
     "license": "MIT",
     "authors": [
         {
             "name": "Oscar",
             "email": "oxkhar@gmail.com"
         }
-    ]
+    ],
+
+    "require": {
+        "slim/slim": "2.4.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    }
 }
