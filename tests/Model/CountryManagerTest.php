@@ -59,7 +59,7 @@ class CountryManagerTest extends PHPUnit_Framework_TestCase
         $ddl = file_get_contents(__DIR__ . "/../../fixtures/database.sql");
         self::$dbm->exec($ddl);
 
-        $insert = self::$dbm->prepare('INSERT INTO countries VALUES (?, ?, ?)');
+        $insert = self::$dbm->prepare('INSERT INTO countries (id, name, iso) VALUES (?, ?, ?)');
 
         foreach (self::$dataFixtures as $country) {
             $insert->execute($country);
