@@ -8,7 +8,7 @@ class RestFormaterTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var RestFormater
+     * @var RestFormatter
      */
     protected $sut;
 
@@ -18,7 +18,7 @@ class RestFormaterTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->sut = new RestFormater();
+        $this->sut = new RestFormatter();
     }
 
     /**
@@ -36,7 +36,7 @@ class RestFormaterTest extends \PHPUnit_Framework_TestCase
     public function testValidContentTypeFormatFromAcceptTypeHeader($acceptHeader)
     {
         $contentType         = $this->sut->validContentType($acceptHeader);
-        $contentTypeExpected = RestFormater::TYPE_JSON;
+        $contentTypeExpected = RestFormatter::TYPE_JSON;
 
         $this->assertEquals($contentTypeExpected, $contentType);
     }
@@ -69,7 +69,7 @@ class RestFormaterTest extends \PHPUnit_Framework_TestCase
      */
     public function testGenerateDataContentInFormatJson($listContent, $expectedJson)
     {
-        $actualJson = $this->sut->generateContentList($listContent);
+        $actualJson = $this->sut->generateContentData($listContent);
 
         $this->assertJsonStringEqualsJsonString($expectedJson, $actualJson);
     }

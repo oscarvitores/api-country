@@ -4,7 +4,7 @@ namespace Api\Country\Model;
 
 /**
  */
-class RestFormater
+class RestFormatter
 {
 
     const TYPE_JSON = "application/json";
