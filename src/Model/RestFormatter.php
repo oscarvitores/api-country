@@ -4,7 +4,7 @@ namespace Api\Country\Model;
 
 /**
  */
-class RestFormater
+class RestFormatter
 {
 
     const TYPE_JSON = "application/json";
@@ -21,5 +21,12 @@ class RestFormater
             throw new \InvalidArgumentException("Client don't accept valid content type '" . self::TYPE_JSON . "'", 406);
         }
         return self::TYPE_JSON;
+    }
+
+    public function generateContentData(array $listContent)
+    {
+        $dataList = array("data" => $listContent);
+
+        return json_encode($dataList, true);
     }
 }

@@ -4,11 +4,11 @@ namespace Api\Country\Model;
 
 /**
  */
-class RestFormaterTest extends PHPUnit_Framework_TestCase
+class RestFormaterTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var RestFormater
+     * @var RestFormatter
      */
     protected $sut;
 
@@ -18,7 +18,7 @@ class RestFormaterTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->sut = new RestFormater();
+        $this->sut = new RestFormatter();
     }
 
     /**
@@ -36,7 +36,7 @@ class RestFormaterTest extends PHPUnit_Framework_TestCase
     public function testValidContentTypeFormatFromAcceptTypeHeader($acceptHeader)
     {
         $contentType         = $this->sut->validContentType($acceptHeader);
-        $contentTypeExpected = RestFormater::TYPE_JSON;
+        $contentTypeExpected = RestFormatter::TYPE_JSON;
 
         $this->assertEquals($contentTypeExpected, $contentType);
     }
@@ -62,5 +62,28 @@ class RestFormaterTest extends PHPUnit_Framework_TestCase
         $acceptHeader = "text/html,application/xml";
 
         $contentType = $this->sut->validContentType($acceptHeader);
+    }
+
+    /**
+     * @dataProvider providerValidJsonFormats
+     */
+    public function testGenerateDataContentInFormatJson($listContent, $expectedJson)
+    {
+        $actualJson = $this->sut->generateContentData($listContent);
+
+        $this->assertJsonStringEqualsJsonString($expectedJson, $actualJson);
+    }
+
+    public function providerValidJsonFormats()
+    {
+        return array(
+            array(array(), '{"data":[]}'),
+            array(
+                array(
+                    array("id" => "1", "name" => "España", "iso" => "ES"),
+                    array("id" => "2", "name" => "Francia", "iso" => "FR")
+                ),
+                '{"data":[{"id":1,"name":"España", "iso":"ES"},{"id":2,"name":"Francia","iso":"FR"}]}')
+        );
     }
 }
