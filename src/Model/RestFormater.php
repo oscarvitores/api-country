@@ -22,4 +22,11 @@ class RestFormater
         }
         return self::TYPE_JSON;
     }
+
+    public function generateContentData(array $listContent)
+    {
+        $dataList = array("data" => $listContent);
+
+        return json_encode($dataList, true);
+    }
 }

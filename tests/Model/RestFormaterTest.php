@@ -4,7 +4,7 @@ namespace Api\Country\Model;
 
 /**
  */
-class RestFormaterTest extends PHPUnit_Framework_TestCase
+class RestFormaterTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -62,5 +62,28 @@ class RestFormaterTest extends PHPUnit_Framework_TestCase
         $acceptHeader = "text/html,application/xml";
 
         $contentType = $this->sut->validContentType($acceptHeader);
+    }
+
+    /**
+     * @dataProvider providerValidJsonFormats
+     */
+    public function testGenerateDataContentInFormatJson($listContent, $expectedJson)
+    {
+        $actualJson = $this->sut->generateContentList($listContent);
+
+        $this->assertJsonStringEqualsJsonString($expectedJson, $actualJson);
+    }
+
+    public function providerValidJsonFormats()
+    {
+        return array(
+            array(array(), '{"data":[]}'),
+            array(
+                array(
+                    array("id" => "1", "name" => "España", "iso" => "ES"),
+                    array("id" => "2", "name" => "Francia", "iso" => "FR")
+                ),
+                '{"data":[{"id":1,"name":"España", "iso":"ES"},{"id":2,"name":"Francia","iso":"FR"}]}')
+        );
     }
 }
