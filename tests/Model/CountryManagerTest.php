@@ -98,11 +98,22 @@ class CountryManagerTest extends PHPUnit_Framework_TestCase
         $result     = $this->sut->listAll();
         $isRowValid = !empty($result);
         foreach ($result as $key => $value) {
-            var_dump($key);
-            var_dump($value);
             $isRowValid = $isRowValid && $value['name'] === self::$dataFixtures[$key][1];
         }
 
         $this->assertTrue($isRowValid);
+        $result->closeCursor();
+    }
+
+    public function testRowDataIsAssociativeArrayOnly()
+    {
+        $result = $this->sut->listAll();
+
+        $row = $result->fetch();
+
+        $this->assertArrayHasKey('id', $row);
+        $this->assertArrayNotHasKey(0, $row);
+
+        $result->closeCursor();
     }
 }
