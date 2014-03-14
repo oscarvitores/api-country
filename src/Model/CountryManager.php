@@ -2,22 +2,27 @@
 
 namespace Api\Country\Model;
 
-class CountryManager {
+class CountryManager
+{
 
+    /**
+     * @var \PDO
+     */
     private $dbm;
 
     /**
      * @param \PDO $dbm
      */
-    public function __construct(\PDO $dbm) {
+    public function __construct(\PDO $dbm)
+    {
         $this->dbm = $dbm;
     }
 
     /**
      * @return \PDOStatement
      */
-    public function listAll() {
+    public function listAll()
+    {
         return $this->dbm->query("SELECT id, name, iso FROM countries");
     }
-
 }
