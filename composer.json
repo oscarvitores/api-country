@@ -8,7 +8,11 @@
             "email": "oxkhar@gmail.com"
         }
     ],
-
+    "autoload": {
+        "psr-4": {
+            "Api\\Country\\": "src"
+        }
+    },
     "require": {
         "slim/slim": "2.4.*"
     },
