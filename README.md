@@ -6,12 +6,12 @@ Implementación de un API Rest para solicitar el listado de paises del mundo con
 
 * Tener **PHP >= 5.3.0**
 * Modulos de base de datos **php5-mysql**, y **php5-sqlite** para los tests
-* Para la generación del informe de covertura de tests instalar php5-xdebug
+* Para la generación del informe de covertura de tests instalar **php5-xdebug**
 
 ##  Configuración
 
 
-Copiar el fichero ```app/properties.ini.dis``` a ```app/properties.ini``` y configurar las credenciales de acceso a base de datos.
+Copiar el fichero ```app/properties.ini.dist``` a ```app/properties.ini``` y configurar las credenciales de acceso a base de datos.
 
 ```ini
 db.dsn = "mysql:host=localhost;port=3306;dbname=api_country"
@@ -33,7 +33,7 @@ Verificada las dependencias y teniendo la configuración se puede llevar a cabo 
 
 * Desplegara las librerías de proyecto
 * Creará y cargará la base de datos
-* Pasará los tests y generará los informes en el directorio **report**
+* Pasará los tests y generará los informes
 
 ### Manual
 
@@ -49,7 +49,7 @@ Debemos desplegar las diferentes librerías dependientes de la aplicación para 
 
 curl -sS https://getcomposer.org/installer | php -- --filename=composer
 
-./composer installl
+./composer install
 
 ```
 
@@ -59,9 +59,9 @@ curl -sS https://getcomposer.org/installer | php -- --filename=composer
 
 ```bash
 
-mysql -h localhot -u user api-rest < fixtures/database.sql
+mysql -h localhost -u user dbname < fixtures/database.sql
 
-mysql -h localhot -u user api-rest < fixtures/countries.sql
+mysql -h localhost -u user dbname < fixtures/countries.sql
 
 ```
 
@@ -85,7 +85,7 @@ Los informes se generan bajo el directorio **report** donde podras encontrar...
 
 Para consuir el API se accedera por HTTP a ....
 
-* http://hostname/api/countries
+* ```http://hostname/api/countries``` [**GET**]
 
 
 
