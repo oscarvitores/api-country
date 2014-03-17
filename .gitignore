@@ -2,6 +2,8 @@
 
 ### APP ###
 app/properties.ini
+phpunit.xml
+report/
 
 ### NetBeans ###
 nbproject/private/
@@ -17,3 +19,4 @@ nb-configuration.xml
 # Composer - http://getcomposer.org
 /vendor
 composer.phar
+composer
