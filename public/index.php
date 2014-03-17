@@ -13,7 +13,10 @@ $app->container->singleton('rest-formatter', function() {
     return new Api\Country\Model\RestFormatter();
 });
 
-$app->get('/api/countries', Api\Country\Controller\CountryController::$listCountriesAction);
+// Route configuration
+$app->get('/api/countries', function() use ($app) {
+    CountryController::listCountriesAction($app);
+});
 
 // Run app
 $app->run();

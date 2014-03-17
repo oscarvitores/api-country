@@ -19,10 +19,11 @@ class CountryManager
     }
 
     /**
-     * @return \PDOStatement
+     * @return array
      */
     public function listAll()
     {
-        return $this->dbm->query("SELECT id, name, iso FROM countries", \PDO::FETCH_ASSOC);
+        $listCountries = $this->dbm->query("SELECT id, name, iso FROM countries", \PDO::FETCH_ASSOC);
+        return $listCountries->fetchAll();
     }
 }
