@@ -89,8 +89,6 @@ class CountryManagerTest extends PHPUnit_Framework_TestCase
         $dataCount = count(self::$dataFixtures);
 
         $this->assertEquals($dataCount, $rowCount);
-
-        $result->closeCursor();
     }
 
     public function testCountriesReadedAreInDataFixturesLoaded()
@@ -102,18 +100,15 @@ class CountryManagerTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertTrue($isRowValid);
-        $result->closeCursor();
     }
 
     public function testRowDataIsAssociativeArrayOnly()
     {
         $result = $this->sut->listAll();
 
-        $row = $result->fetch();
+        $row = reset($result);
 
         $this->assertArrayHasKey('id', $row);
         $this->assertArrayNotHasKey(0, $row);
-
-        $result->closeCursor();
     }
 }
