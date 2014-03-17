@@ -29,4 +29,12 @@ class RestFormatter
 
         return json_encode($dataList, true);
     }
+
+    /**
+     * @return string
+     */
+    public static function getContentType()
+    {
+        return self::TYPE_JSON;
+    }
 }

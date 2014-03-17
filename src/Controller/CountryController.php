@@ -14,7 +14,7 @@ class CountryController
 
         $formatter = $app->container->get('rest-formatter');
 
-        $app->response->headers->set('Content-Type', 'application/json');
+        $app->response->headers->set('Content-Type', $formatter->getContentType());
         echo $formatter->generateContentData($listCountries);
     }
 }

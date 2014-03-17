@@ -13,6 +13,12 @@ class CoutryControllerTest extends \PHPUnit_Framework_TestCase
     protected $sut;
 
     /**
+     *
+     * @var \Slim\Slim
+     */
+    protected $app;
+
+    /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $mockManager;
@@ -39,6 +45,7 @@ class CoutryControllerTest extends \PHPUnit_Framework_TestCase
 
         $mockFormatter = $this->getMockBuilder("\Api\Country\Model\RestFormatter")
                 ->disableOriginalConstructor()
+                ->setMethods(array('generateContentData'))
                 ->getMock();
         $this->app->container->singleton('rest-formatter', function() use ($mockFormatter) {
             return $this->mockFormatter;
@@ -61,5 +68,22 @@ class CoutryControllerTest extends \PHPUnit_Framework_TestCase
                 ->method('generateContentData');
 
         CountryController::listCountriesAction($this->app);
+    }
+
+    public function testListCountriesResponseIsContentTypeJson()
+    {
+        $this->mockManager
+                ->expects($this->any())
+                ->method('listAll')
+                ->willReturn(array());
+
+        CountryController::listCountriesAction($this->app);
+
+        $expected = $this->mockFormatter->getContentType();
+
+        $responseContenType = $this->app->response->headers->get('Content-Type');
+
+        $this->assertEquals($expected, $responseContenType);
+        $this->assertEquals(\Api\Country\Model\RestFormatter::TYPE_JSON, $responseContenType);
     }
 }
