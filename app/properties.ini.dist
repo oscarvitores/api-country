@@ -1,11 +1,9 @@
 
+; Database configuration
 
-[database]
-host = "localhost"
-port = "99999"
-username = "xxxxxxx"
-password =  "xxxxxxx"
-options =  ""
+db.dsn = "mysql:host=localhost;port=3306;dbname=api_country"
+db.username = "root"
+db.password =  ""
 
 
 

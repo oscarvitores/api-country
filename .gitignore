@@ -1,5 +1,8 @@
 # Created by http://www.gitignore.io
 
+### APP ###
+app/properties.ini
+
 ### NetBeans ###
 nbproject/private/
 build/
