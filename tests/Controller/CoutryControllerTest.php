@@ -33,6 +33,8 @@ class CoutryControllerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        $this->sut = new CountryController();
+
         $this->app = new \Slim\Slim();
 
         $mockManager = $this->getMockBuilder("\Api\Country\Model\CountryManager")
@@ -53,9 +55,6 @@ class CoutryControllerTest extends \PHPUnit_Framework_TestCase
         $this->mockFormatter = $mockFormatter;
     }
 
-    /**
-     *
-     */
     public function testListCountriesGetAction()
     {
         $this->mockManager
@@ -67,7 +66,7 @@ class CoutryControllerTest extends \PHPUnit_Framework_TestCase
                 ->expects($this->once())
                 ->method('generateContentData');
 
-        CountryController::listCountriesAction($this->app);
+        $this->sut->listCountriesAction($this->app);
     }
 
     public function testListCountriesResponseIsContentTypeJson()
@@ -77,7 +76,7 @@ class CoutryControllerTest extends \PHPUnit_Framework_TestCase
                 ->method('listAll')
                 ->willReturn(array());
 
-        CountryController::listCountriesAction($this->app);
+        $this->sut->listCountriesAction($this->app);
 
         $expected = $this->mockFormatter->getContentType();
 

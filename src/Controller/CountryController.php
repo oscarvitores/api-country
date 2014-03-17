@@ -2,11 +2,12 @@
 
 namespace Api\Country\Controller;
 
-/**
- */
 class CountryController
 {
 
+    /**
+     * @param \Slim\Slim $app
+     */
     public static function listCountriesAction(\Slim\Slim $app)
     {
         $countryManager = $app->container->get('country-manager');
