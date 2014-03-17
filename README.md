@@ -4,7 +4,7 @@ Implementación de un API Rest para solicitar el listado de paises del mundo con
 
 ##  Requisitos
 
-* Tener **PHP >= 5.3.0*
+* Tener **PHP >= 5.3.0**
 * Modulos de base de datos **php5-mysql**, y **php5-sqlite** para los tests
 * Para la generación del informe de covertura de tests instalar php5-xdebug
 
@@ -27,7 +27,7 @@ El servidor web deberá poder acceder al directorio **public**
 
 Verificada las dependencias y teniendo la configuración se puede llevar a cabo una instalación rápida ejecutando...
 
-```bash
+```shell
 ./install.sh
 ```
 
