@@ -18,7 +18,7 @@ fi
 CMD_COMPOSER=($(which ./composer ./composer.phar composer composer.phar))
 if [[ ${CMD_COMPOSER} == "" ]]; then
     curl -sS https://getcomposer.org/installer | php -- --filename=composer
-    CMD_COMPOSER="composer"
+    CMD_COMPOSER="./composer"
 fi
 
 $CMD_COMPOSER install
