@@ -2,8 +2,6 @@
 
 namespace Api\Country\Model;
 
-/**
- */
 class RestFormaterTest extends \PHPUnit_Framework_TestCase
 {
 

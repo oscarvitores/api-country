@@ -2,18 +2,30 @@
 
 require '../vendor/autoload.php';
 
-// Prepare app
-$app = new \Slim\Slim();
+use Api\Country\Controller\CountryController;
+use Api\Country\Model\CountryManager;
+use Api\Country\Model\RestFormatter;
 
-$app->container->singleton('country-manager', function() {
-    return new Api\Country\Model\CountryManager(new PDO("mysql:dbname=api_country;host=localhost", "root"));
+// Prepare app
+$app = new Slim\Slim();
+
+// DI container
+$app->container->singleton('dba', function() {
+    return new PDO("mysql:dbname=api_country;host=localhost", "root");
+});
+
+$app->container->singleton('country-manager', function($container) {
+    return new CountryManager($container->get('dba'));
 });
 
 $app->container->singleton('rest-formatter', function() {
-    return new Api\Country\Model\RestFormatter();
+    return new RestFormatter();
 });
 
-$app->get('/api/countries', Api\Country\Controller\CountryController::$listCountriesAction);
+// Route configuration
+$app->get('/api/countries', function() use ($app) {
+    CountryController::listCountriesAction($app);
+});
 
 // Run app
 $app->run();
