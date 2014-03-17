@@ -2,8 +2,6 @@
 
 namespace Api\Country\Controller;
 
-/**
- */
 class CoutryControllerTest extends \PHPUnit_Framework_TestCase
 {
 

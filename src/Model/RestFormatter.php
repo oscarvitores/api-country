@@ -2,8 +2,6 @@
 
 namespace Api\Country\Model;
 
-/**
- */
 class RestFormatter
 {
 
@@ -23,6 +21,11 @@ class RestFormatter
         return self::TYPE_JSON;
     }
 
+    /**
+     *
+     * @param array $listContent
+     * @return string
+     */
     public function generateContentData(array $listContent)
     {
         $dataList = array("data" => $listContent);
