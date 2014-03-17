@@ -22,6 +22,11 @@ if [[ ${CMD_COMPOSER} == "" ]]; then
 fi
 
 $CMD_COMPOSER install
+EXIT_CODE=$?
+if [[ $EXIT_CODE != 0 ]]; then
+    echo -e "\n Revisa la configuración de tu sistema para la correcta instalación de la aplicación\n"
+    exit $EXIT_CODE
+fi
 
 #
 echo -e "\n\n### Inicializando base de datos...\n"
