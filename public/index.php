@@ -7,7 +7,23 @@ use Api\Country\Model\CountryManager;
 use Api\Country\Model\RestFormatter;
 
 // Prepare app
-$app = new Slim\Slim();
+$app = new Slim\Slim(array("debug" => false));
+
+$app->error(function(\Exception $exc) use ($app) {
+    $code = $exc->getCode();
+    if (!$code || $code > 599)
+        $code = 500;
+
+    $app->response->headers->set('Content-Type', RestFormatter::TYPE_JSON);
+    $app->response->setStatus($code);
+
+    $errorData = array(
+        "status" => "fail",
+        "data"   => array("message" => $exc->getMessage())
+    );
+
+    echo json_encode($errorData);
+});
 
 // Config
 $properties = parse_ini_file(__DIR__ . "/../app/properties.ini");
