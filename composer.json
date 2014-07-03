@@ -1,10 +1,10 @@
 {
     "name": "oxkhar/api-country",
-    "description": "code countries API REST",
+   "description": "code countries API REST",
     "license": "MIT",
     "authors": [
         {
-            "name": "Oscar",
+            "name": "Oscar Vítores",
             "email": "oxkhar@gmail.com"
         }
     ],
